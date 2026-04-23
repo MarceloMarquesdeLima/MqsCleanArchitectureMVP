@@ -1,2 +1,25 @@
 <Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/API/">
+    <Project Path="src/MqsCleanArchitectureMVP.API/MqsCleanArchitectureMVP.API.csproj" Id="dc85ac58-cf1c-4336-9ed1-037de32ed569" />
+  </Folder>
+  <Folder Name="/src/Application/">
+    <Project Path="src/MqsCleanArchitectureMVP.Application/MqsCleanArchitectureMVP.Application.csproj" Id="fb99f62f-ac26-4a0c-b9c1-4a3ff2d25aa6" />
+  </Folder>
+  <Folder Name="/src/Domain/">
+    <Project Path="src/MqsCleanArchitectureMVP.Domain/MqsCleanArchitectureMVP.Domain.csproj" Id="52afc27d-03da-4d09-95c6-2ba6d8d5a5b9" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/MqsCleanArchitectureMVP.Infra/MqsCleanArchitectureMVP.Infra.csproj" Id="084209e8-e05a-455b-bb12-bb7a7d434df6" />
+  </Folder>
+  <Folder Name="/src/k8s/">
+    <File Path="api-deployment.yml" />
+    <File Path="docker-compose.yml" />
+    <File Path="kafka-deployment.yml" />
+    <File Path="mongo-deployment.yml" />
+    <File Path="sqlserver-deployment.yml" />
+  </Folder>
+  <Folder Name="/src/Tests/">
+    <Project Path="src/MqsCleanArchitectureMVP.Tests/MqsCleanArchitectureMVP.Tests.csproj" Id="6c40ddeb-e48a-4998-9685-f12405a6f637" />
+  </Folder>
 </Solution>

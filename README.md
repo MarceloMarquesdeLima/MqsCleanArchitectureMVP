@@ -33,11 +33,11 @@ Este roadmap organiza a implementação de um MVP bancário utilizando os princ�
      
 <img width="1024" height="1536" alt="Copilot_20260423_060651" src="https://github.com/user-attachments/assets/62c6d17d-8405-446b-adf5-ea703ffd8384" />
 
-# O diagrama de domínio bancário que integra as Entidades, Aggregates, Events, Interfaces e Value Objects em uma visão única.
+#### O diagrama de domínio bancário que integra as Entidades, Aggregates, Events, Interfaces e Value Objects em uma visão única.
 
 <img width="1536" height="1024" alt="Copilot_20260423_085455" src="https://github.com/user-attachments/assets/b942e951-1949-45ee-9feb-5c7ebf47dc78" />
 
-# O diagrama mostra:
+## O diagrama mostra:
 
 🟧 Account Aggregate — o agregado raiz que contém a entidade Account e a lista de Transactions.
 

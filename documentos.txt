@@ -1,0 +1,194 @@
+Como usar
+Salve esse arquivo como docker-compose.yml na raiz do projeto.
+
+Execute:
+
+bash
+docker-compose up -d
+
+Como usar
+Salve esse arquivo como docker-compose.yml na raiz do projeto.
+
+Execute:
+
+bash
+docker-compose up -d
+
+
+======================================================================================
+#!/bin/bash
+
+echo "🚀 Inicializando ambiente bancário..."
+
+# Aguarda containers subirem
+sleep 20
+
+echo "📦 Criando tópicos Kafka..."
+docker exec -it kafka kafka-topics.sh --create --topic account-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 3
+docker exec -it kafka kafka-topics.sh --create --topic transaction-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 3
+
+echo "🗄️ Criando banco SQL Server..."
+docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourPassword123 -Q "
+CREATE DATABASE BankingDB;
+USE BankingDB;
+CREATE TABLE Accounts (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    AccountNumber NVARCHAR(50),
+    HolderName NVARCHAR(100),
+    Balance DECIMAL(18,2),
+    CreatedAt DATETIME
+);
+CREATE TABLE Transactions (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    AccountId UNIQUEIDENTIFIER,
+    Amount DECIMAL(18,2),
+    Type NVARCHAR(20),
+    Timestamp DATETIME
+);
+"
+
+echo "🍃 Criando coleções MongoDB..."
+docker exec -it mongo mongosh --eval "
+use BankingDB;
+db.createCollection('Accounts');
+db.createCollection('Transactions');
+"
+
+echo "✅ Ambiente inicializado com sucesso!"
+
+
+=======================================================================================
+Write-Host "🚀 Inicializando ambiente bancário... PowerShell"
+
+Start-Sleep -Seconds 20
+
+Write-Host "📦 Criando tópicos Kafka..."
+docker exec kafka kafka-topics.sh --create --topic account-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 3
+docker exec kafka kafka-topics.sh --create --topic transaction-events --bootstrap-server kafka:9092 --replication-factor 1 --partitions 3
+
+Write-Host "🗄️ Criando banco SQL Server..."
+docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourPassword123 -Q @"
+CREATE DATABASE BankingDB;
+USE BankingDB;
+CREATE TABLE Accounts (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    AccountNumber NVARCHAR(50),
+    HolderName NVARCHAR(100),
+    Balance DECIMAL(18,2),
+    CreatedAt DATETIME
+);
+CREATE TABLE Transactions (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    AccountId UNIQUEIDENTIFIER,
+    Amount DECIMAL(18,2),
+    Type NVARCHAR(20),
+    Timestamp DATETIME
+);
+"@
+
+Write-Host "🍃 Criando coleções MongoDB..."
+docker exec mongo mongosh --eval "use BankingDB; db.createCollection('Accounts'); db.createCollection('Transactions');"
+
+Write-Host "✅ Ambiente inicializado com sucesso!"
+
+=======================================================================================
+
+Como usar
+Salve o script (init.sh ou init.ps1) na raiz do projeto.
+
+Suba os containers:
+
+bash
+docker-compose up -d
+Execute o script:
+
+Linux/Mac: bash init.sh
+
+Windows: .\init.ps1
+
+
+=======================================================================================
+Script em Bash (seed.sh)
+
+#!/bin/bash
+
+echo "🌱 Inserindo dados de exemplo..."
+
+# Aguarda containers subirem
+sleep 10
+
+echo "🗄️ Inserindo dados no SQL Server..."
+docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourPassword123 -Q "
+USE BankingDB;
+INSERT INTO Accounts (Id, AccountNumber, HolderName, Balance, CreatedAt)
+VALUES (NEWID(), '0001-01', 'Marcelo Silva', 1500.00, GETDATE());
+
+INSERT INTO Accounts (Id, AccountNumber, HolderName, Balance, CreatedAt)
+VALUES (NEWID(), '0001-02', 'Ana Souza', 2500.00, GETDATE());
+
+INSERT INTO Transactions (Id, AccountId, Amount, Type, Timestamp)
+VALUES (NEWID(), (SELECT TOP 1 Id FROM Accounts WHERE AccountNumber='0001-01'), 500.00, 'Credit', GETDATE());
+"
+
+echo "🍃 Inserindo dados no MongoDB..."
+docker exec -it mongo mongosh --eval "
+use BankingDB;
+db.Accounts.insertOne({ AccountNumber: '0001-01', HolderName: 'Marcelo Silva', Balance: 1500.00, CreatedAt: new Date() });
+db.Accounts.insertOne({ AccountNumber: '0001-02', HolderName: 'Ana Souza', Balance: 2500.00, CreatedAt: new Date() });
+db.Transactions.insertOne({ AccountId: '0001-01', Amount: 500.00, Type: 'Credit', Timestamp: new Date() });
+"
+
+echo "📦 Publicando eventos no Kafka..."
+docker exec -it kafka kafka-console-producer.sh --broker-list kafka:9092 --topic account-events <<EOF
+{"AccountId":"0001-01","HolderName":"Marcelo Silva","CreatedAt":"$(date --utc +%FT%TZ)"}
+{"AccountId":"0001-02","HolderName":"Ana Souza","CreatedAt":"$(date --utc +%FT%TZ)"}
+EOF
+
+echo "✅ Dados de exemplo inseridos com sucesso!"
+
+
+=======================================================================================
+Script em PowerShell (seed.ps1)
+
+Write-Host "🌱 Inserindo dados de exemplo..."
+
+Start-Sleep -Seconds 10
+
+Write-Host "🗄️ Inserindo dados no SQL Server..."
+docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourPassword123 -Q @"
+USE BankingDB;
+INSERT INTO Accounts (Id, AccountNumber, HolderName, Balance, CreatedAt)
+VALUES (NEWID(), '0001-01', 'Marcelo Silva', 1500.00, GETDATE());
+
+INSERT INTO Accounts (Id, AccountNumber, HolderName, Balance, CreatedAt)
+VALUES (NEWID(), '0001-02', 'Ana Souza', 2500.00, GETDATE());
+
+INSERT INTO Transactions (Id, AccountId, Amount, Type, Timestamp)
+VALUES (NEWID(), (SELECT TOP 1 Id FROM Accounts WHERE AccountNumber='0001-01'), 500.00, 'Credit', GETDATE());
+"@
+
+Write-Host "🍃 Inserindo dados no MongoDB..."
+docker exec mongo mongosh --eval "use BankingDB; db.Accounts.insertOne({ AccountNumber: '0001-01', HolderName: 'Marcelo Silva', Balance: 1500.00, CreatedAt: new Date() }); db.Accounts.insertOne({ AccountNumber: '0001-02', HolderName: 'Ana Souza', Balance: 2500.00, CreatedAt: new Date() }); db.Transactions.insertOne({ AccountId: '0001-01', Amount: 500.00, Type: 'Credit', Timestamp: new Date() });"
+
+Write-Host "📦 Publicando eventos no Kafka..."
+docker exec kafka kafka-console-producer.sh --broker-list kafka:9092 --topic account-events <<EOF
+{"AccountId":"0001-01","HolderName":"Marcelo Silva","CreatedAt":"$(Get-Date -Format o)"}
+{"AccountId":"0001-02","HolderName":"Ana Souza","CreatedAt":"$(Get-Date -Format o)"}
+EOF
+
+Write-Host "✅ Dados de exemplo inseridos com sucesso!"
+
+
+=======================================================================================
+Como usar
+Salve o script (seed.sh ou seed.ps1) na raiz do projeto.
+
+Suba os containers:
+
+bash
+docker-compose up -d
+Execute o script:
+
+Linux/Mac: bash seed.sh
+
+Windows: .\seed.ps1si

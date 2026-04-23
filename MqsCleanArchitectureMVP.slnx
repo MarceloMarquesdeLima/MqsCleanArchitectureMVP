@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Outros/">
+    <File Path="documentos.txt" />
+  </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/API/">
     <Project Path="src/MqsCleanArchitectureMVP.API/MqsCleanArchitectureMVP.API.csproj" Id="dc85ac58-cf1c-4336-9ed1-037de32ed569" />

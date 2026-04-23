@@ -1,6 +1,6 @@
 # Projetos Clean Architecture para seguimento Bancário
 
-Este roadmap organiza a implementação de um MVP bancário utilizando os princípios da Clean Architecture, garantindo separação de responsabilidades, escalabilidade e segurança.
+Este roadmap que organiza a implementação de um MVP bancário utilizando os princípios da Clean Architecture, garantindo separação de responsabilidades, escalabilidade e segurança.
 
 1. Core Financeiro (Domínio)
    * Ledger (livro razão digital): Implementar entidades e regras de negócio para registrar transações.
@@ -32,4 +32,25 @@ Este roadmap organiza a implementação de um MVP bancário utilizando os princ�
    * Observabilidade com Prometheus + Grafana.
      
 <img width="1024" height="1536" alt="Copilot_20260423_060651" src="https://github.com/user-attachments/assets/62c6d17d-8405-446b-adf5-ea703ffd8384" />
+
+#### O diagrama de domínio bancário que integra as Entidades, Aggregates, Events, Interfaces e Value Objects em uma visão única.
+
+<img width="1536" height="1024" alt="Copilot_20260423_085455" src="https://github.com/user-attachments/assets/b942e951-1949-45ee-9feb-5c7ebf47dc78" />
+
+## O diagrama mostra:
+
+🟧 Account Aggregate — o agregado raiz que contém a entidade Account e a lista de Transactions.
+
+🔵 Account (Entidade) — atributos como AccountId, HolderName, Balance e métodos Deposit e Withdraw.
+
+🟩 Money (Value Object) — imutável, com operações Add e Subtract.
+
+⚪ Transaction (Entidade) — registra movimentações financeiras vinculadas à conta.
+
+🟨 Domain Events — AccountCreatedEvent e FundsTransferredEvent, disparados pelas entidades.
+
+➡️ Interfaces — contratos como IAccountRepository, ITransactionRepository e IEventPublisher que conectam o domínio à infraestrutura.
+
+Esse diagrama é essencial para documentar o núcleo do domínio e mostrar como os componentes se relacionam de forma clara e consistente.
+
 

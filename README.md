@@ -37,4 +37,20 @@ Este roadmap organiza a implementação de um MVP bancário utilizando os princ�
 
 <img width="1536" height="1024" alt="Copilot_20260423_085455" src="https://github.com/user-attachments/assets/b942e951-1949-45ee-9feb-5c7ebf47dc78" />
 
+# O diagrama mostra:
+
+🟧 Account Aggregate — o agregado raiz que contém a entidade Account e a lista de Transactions.
+
+🔵 Account (Entidade) — atributos como AccountId, HolderName, Balance e métodos Deposit e Withdraw.
+
+🟩 Money (Value Object) — imutável, com operações Add e Subtract.
+
+⚪ Transaction (Entidade) — registra movimentações financeiras vinculadas à conta.
+
+🟨 Domain Events — AccountCreatedEvent e FundsTransferredEvent, disparados pelas entidades.
+
+➡️ Interfaces — contratos como IAccountRepository, ITransactionRepository e IEventPublisher que conectam o domínio à infraestrutura.
+
+Esse diagrama é essencial para documentar o núcleo do domínio e mostrar como os componentes se relacionam de forma clara e consistente.
+
 

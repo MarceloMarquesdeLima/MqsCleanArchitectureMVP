@@ -53,4 +53,21 @@ Este roadmap que organiza a implementação de um MVP bancário utilizando os pr
 
 Esse diagrama é essencial para documentar o núcleo do domínio e mostrar como os componentes se relacionam de forma clara e consistente.
 
+## o diagrama completo da arquitetura do MVP bancário, integrando todas as camadas — Domain, Application, Infrastructure e API — em uma visão única e coesa.
+
+<img width="1024" height="1536" alt="BCO 4c69f751-018b-4e26-a132-e7f361316f23" src="https://github.com/user-attachments/assets/eeaebe03-ecf4-4e96-9904-00171562f567" />
+
+O diagrama mostra:
+
+🧭 Camada API — com o AccountController, responsável por receber requisições HTTP e acionar os comandos e queries.
+
+⚙️ Camada Application — contendo Commands, Handlers e Queries, que orquestram a lógica de negócio e comunicação com o domínio.
+
+🧩 Camada Domain — com Entities, Aggregates, Events e Value Objects, representando o núcleo da regra de negócio.
+
+🏗️ Camada Infrastructure — com Repositories, Messaging (Kafka) e Databases (SQL Server e MongoDB), responsáveis pela persistência e mensageria.
+
+🔄 Fluxos de comunicação — setas indicam o caminho das chamadas API, manipulação de comandos e queries, e publicação de eventos.
+
+Esse diagrama é ideal para documentação técnica, onboarding de desenvolvedores e apresentações de arquitetura.
 

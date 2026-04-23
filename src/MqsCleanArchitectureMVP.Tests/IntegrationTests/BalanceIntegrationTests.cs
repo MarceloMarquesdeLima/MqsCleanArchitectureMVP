@@ -25,8 +25,8 @@ namespace MqsCleanArchitectureMVP.Tests.IntegrationTests
         [Fact]
         public async Task GetAccountBalanceHandler_ReturnsCorrectBalance()
         {
-            var account = new Domain.Entities.Account("0001-01", "Marcelo");
-            account.Deposit(new Domain.Shared.ValueObject.Money(500));
+            var account = new MqsCleanArchitectureMVP.Domain.Entities.Account("0001-01", "Marcelo");
+            account.Deposit(new MqsCleanArchitectureMVP.Domain.Shared.ValueObject.MoneyValue(500m)); // usar decimal literal
             await _repository.AddAsync(account);
 
             var handler = new GetAccountBalanceHandler(_repository);
@@ -34,7 +34,7 @@ namespace MqsCleanArchitectureMVP.Tests.IntegrationTests
 
             var result = await handler.Handle(query);
 
-            Assert.Equal(500, result.Balance);
+            Assert.Equal(500m, result.Balance); // comparação com decimal
         }*/
     }
 }

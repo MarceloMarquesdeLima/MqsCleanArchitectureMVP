@@ -16,13 +16,13 @@ namespace MqsCleanArchitectureMVP.Tests.IntegrationTests
 
         public AccountIntegrationTests()
         {
-            var options = new DbContextOptionsBuilder<SqlServerContext>()
+            /*var options = new DbContextOptionsBuilder<SqlServerContext>()
                 .UseInMemoryDatabase("BankingTestDB")
                 .Options;
 
             _context = new SqlServerContext(options);
             _repository = new AccountRepository(_context);
-            _publisher = new KafkaProducer("localhost:9092", "account-events");
+            _publisher = new KafkaProducer("localhost:9092", "account-events");*/
         }
 
         [Fact]

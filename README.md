@@ -91,3 +91,5 @@ O diagrama mostra:
 
 🧭 Ingress Controller — gerencia o tráfego externo para a API.
 
+#### Os arquivos colocados na pasta k8s/ do projeto e aplicados com o seguinte comando:
+kubectl apply -f k8s/

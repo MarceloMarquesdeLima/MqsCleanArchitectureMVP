@@ -63,3 +63,4 @@ nunit-*.xml
 /.vs/MqsCleanArchitectureMVP.slnx/DesignTimeBuild
 /.vs/MqsCleanArchitectureMVP.slnx/FileContentIndex
 /.vs/MqsCleanArchitectureMVP.slnx/v18/TestStore/0
+/.vs

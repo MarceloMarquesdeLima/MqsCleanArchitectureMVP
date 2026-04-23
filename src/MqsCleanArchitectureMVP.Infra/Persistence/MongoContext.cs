@@ -14,5 +14,6 @@ namespace MqsCleanArchitectureMVP.Infra.Persistence
         }
 
         public IMongoCollection<Account> Accounts => _database.GetCollection<Account>("Accounts");
+        public IMongoCollection<Transaction> Transactions => _database.GetCollection<Transaction>("Transactions"); // ✅ adicionado
     }
 }

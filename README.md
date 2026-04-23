@@ -83,6 +83,8 @@ O diagrama mostra:
 
 🍃 MongoDB Pod — mantém snapshots e dados de leitura rápida.
 
+### Esse diagrama é ideal para documentação de infraestrutura e DevOps, mostrando como o sistema se comporta em produção.
+
 🌐 API Pod — expõe endpoints REST e se comunica com Kafka e bancos.
 
 📦 ConfigMaps e Secrets — armazenam variáveis de ambiente e credenciais seguras.

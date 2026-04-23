@@ -71,3 +71,21 @@ O diagrama mostra:
 
 Esse diagrama é ideal para documentação técnica, onboarding de desenvolvedores e apresentações de arquitetura.
 
+O diagrama mostra:
+
+🐳 Docker Containers — cada serviço (API, Kafka, SQL Server, MongoDB) empacotado com suas dependências.
+
+☸️ Kubernetes Cluster — orquestra os pods e serviços, garantindo escalabilidade e alta disponibilidade.
+
+🔄 Kafka Broker — gerencia eventos e mensagens entre os microserviços.
+
+🗄️ SQL Server Pod — armazena dados transacionais.
+
+🍃 MongoDB Pod — mantém snapshots e dados de leitura rápida.
+
+🌐 API Pod — expõe endpoints REST e se comunica com Kafka e bancos.
+
+📦 ConfigMaps e Secrets — armazenam variáveis de ambiente e credenciais seguras.
+
+🧭 Ingress Controller — gerencia o tráfego externo para a API.
+

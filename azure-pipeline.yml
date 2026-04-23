@@ -1,0 +1,25 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'MyRegistryServiceConnection'
+      repository: 'banking-api'
+      command: 'buildAndPush'
+      Dockerfile: 'src/API/Dockerfile'
+      tags: |
+        latest
+
+  - task: Kubernetes@1
+    inputs:
+      connectionType: 'KubeConfig'
+      kubeconfig: '$(KUBE_CONFIG)'
+      command: 'apply'
+      useConfigurationFile: true
+      configuration: 'k8s/*.yml'

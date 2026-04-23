@@ -1,0 +1,44 @@
+name: MqsCleanArchitectureMVP CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 'latest'
+
+      - name: Authenticate to Kubernetes Cluster
+        run: |
+          echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+          export KUBECONFIG=kubeconfig.yaml
+
+      - name: Build Docker image
+        run: |
+          docker build -t banking-api:latest ./src/API
+          docker tag banking-api:latest myregistry.azurecr.io/banking-api:latest
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login myregistry.azurecr.io -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
+          docker push myregistry.azurecr.io/banking-api:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/sqlserver-deployment.yml
+          kubectl apply -f k8s/mongo-deployment.yml
+          kubectl apply -f k8s/zookeeper-deployment.yml
+          kubectl apply -f k8s/kafka-deployment.yml
+          kubectl apply -f k8s/api-deployment.yml
+          kubectl apply -f k8s/ingress.yml

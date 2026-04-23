@@ -17,12 +17,18 @@
   </Folder>
   <Folder Name="/src/k8s/">
     <File Path="api-deployment.yml" />
+    <File Path="azure-pipeline.yml" />
+    <File Path="ci.yml" />
     <File Path="docker-compose.yml" />
     <File Path="ingress.yml" />
     <File Path="kafka-deployment.yml" />
     <File Path="mongo-deployment.yml" />
     <File Path="sqlserver-deployment.yml" />
     <File Path="zookeeper-deployment.yml" />
+  </Folder>
+  <Folder Name="/src/k8s/.github/" />
+  <Folder Name="/src/k8s/.github/workflows/">
+    <File Path="cd.yml" />
   </Folder>
   <Folder Name="/src/Tests/">
     <Project Path="src/MqsCleanArchitectureMVP.Tests/MqsCleanArchitectureMVP.Tests.csproj" Id="6c40ddeb-e48a-4998-9685-f12405a6f637" />

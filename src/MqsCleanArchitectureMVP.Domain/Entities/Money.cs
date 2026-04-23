@@ -11,6 +11,11 @@
             Currency = currency;
         }
 
+        public Money(decimal amount) 
+        {
+            Amount = amount;
+        }
+
         public Money Add(Money other) => new Money(Amount + other.Amount, Currency);
         public Money Subtract(Money other) => new Money(Amount - other.Amount, Currency);
     }

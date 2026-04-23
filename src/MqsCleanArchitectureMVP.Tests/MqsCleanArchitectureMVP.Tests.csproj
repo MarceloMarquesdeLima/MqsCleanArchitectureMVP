@@ -15,6 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MqsCleanArchitectureMVP.Application\MqsCleanArchitectureMVP.Application.csproj" />
+    <ProjectReference Include="..\MqsCleanArchitectureMVP.Domain\MqsCleanArchitectureMVP.Domain.csproj" />
+    <ProjectReference Include="..\MqsCleanArchitectureMVP.Infra\MqsCleanArchitectureMVP.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

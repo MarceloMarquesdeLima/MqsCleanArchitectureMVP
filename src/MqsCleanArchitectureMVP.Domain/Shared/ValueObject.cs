@@ -1,4 +1,4 @@
-﻿namespace MqsCleanArchitectureMVP.Domain.Sharedd.ValueObject
+﻿namespace MqsCleanArchitectureMVP.Domain.Shared.ValueObject
 {
     public class Money
     {

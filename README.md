@@ -31,4 +31,4 @@ Este roadmap organiza a implementação de um MVP bancário utilizando os princ�
    * Horizontal Pod Autoscaler (HPA) para escalar serviços de leitura/escrita.
    * Observabilidade com Prometheus + Grafana.
      
-<img width="512" height="768" alt="Estrutura" src="https://github.com/user-attachments/assets/52563f04-9714-432f-8d97-efab42eb97a1" />
+

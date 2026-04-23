@@ -1,6 +1,6 @@
 # Projetos Clean Architecture para seguimento Bancário
 
-Este roadmap organiza a implementação de um MVP bancário utilizando os princípios da Clean Architecture, garantindo separação de responsabilidades, escalabilidade e segurança.
+Este roadmap que organiza a implementação de um MVP bancário utilizando os princípios da Clean Architecture, garantindo separação de responsabilidades, escalabilidade e segurança.
 
 1. Core Financeiro (Domínio)
    * Ledger (livro razão digital): Implementar entidades e regras de negócio para registrar transações.

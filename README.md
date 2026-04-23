@@ -31,4 +31,5 @@ Este roadmap organiza a implementação de um MVP bancário utilizando os princ�
    * Horizontal Pod Autoscaler (HPA) para escalar serviços de leitura/escrita.
    * Observabilidade com Prometheus + Grafana.
      
+<img width="1024" height="1536" alt="Copilot_20260423_060651" src="https://github.com/user-attachments/assets/62c6d17d-8405-446b-adf5-ea703ffd8384" />
 
